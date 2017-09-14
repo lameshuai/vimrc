@@ -4,7 +4,10 @@ syntax on
 set nocompatible
 set autoindent
 set showmatch
+set hlsearch
+set mouse=a
 set spell
+set showcmd
 let mapleader = "-"
 if has("gui_running")
 au GUIEnter * simalt ~x 
@@ -15,8 +18,6 @@ set guioptions-=r
 set guioptions-=b
 endif
 
-
-iab ld <leader>
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions-=T <Bar>
         \set guioptions-=m <bar>
