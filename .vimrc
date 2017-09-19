@@ -59,7 +59,6 @@ set nu
 set spell                       " 启用拼写检查
 set fileencodings=utf-8,gbk
 set ruler                       
-set showmatch 			" 高亮显示匹配的括号 
 set nobackup 			" 不要备份文件（根据自己需要取舍） 
 "set backup
 syntax enable
@@ -78,7 +77,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>  " source配置文件
 " GUI
 "
 if has("gui_running")
-au GUIEnter * simalt ~x 
+au GUIEnter * simalt ~x        " 自动最大化
 set guioptions-=m  
 set guioptions-=T  
 set guioptions-=L 
