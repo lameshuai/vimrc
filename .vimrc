@@ -22,7 +22,7 @@ set fileformat=mac
 "set fileencodings=utf-8,gb18030,utf-16,big5
 "set enc=utf-8
 "set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
-set fileencoding=gb2312
+"set fileencoding=gb2312
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索和匹配 
@@ -77,7 +77,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>  " source配置文件
 " GUI
 "
 if has("gui_running")
-au GUIEnter * simalt ~x        " 自动最大化
+au GUIEnter * simalt ~x            " 自动最大化
 set guioptions-=m  
 set guioptions-=T  
 set guioptions-=L 
@@ -110,6 +110,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'yuttie/hydrangea-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jreybert/vimagit'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-syntastic/syntastic.git'
 
 call vundle#end()
 filetype plugin indent on
@@ -120,6 +122,20 @@ filetype plugin indent on
 let g:airline#extensions#tabline#enabled = 1  " 启用tabline
 nmap <leader><C-n> :bnext<CR>                 " 前一个缓冲区
 nmap <leader><C-p> :bprev<CR>                 " 后一个缓冲区
+"syntasticexpand
+let g:airline#extensions#syntastic#enabled = 1
+let airline#extensions#syntastic#error_symbol = 'E:'
+let airline#extensions#syntastic#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#syntastic#warning_symbol = 'W:'
+let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
+"tagbarexpand
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = ''  
+let g:airline#extensions#tagbar#flags = 'f'
+let g:airline#extensions#tagbar#flags = 's'
+let g:airline#extensions#tagbar#flags = 'p'
+"vimagit
+let g:airline#extensions#vimagit#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "hydrangea
@@ -140,3 +156,32 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.DAT']
 let NERDTreeShowBookmarks=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vimagit
+"
+map <leader>sm :Magit<CR>                   " 打开vimagit
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"tagbar
+"
+nmap  <leader>st :TagbarToggle<CR> 
+let g:tagbar_ctags_bin = 'C:\Program Files\ctags58\ctags.exe'
+let g:tagbar_show_linenumbers = 1
+autocmd vimenter * Tagbar
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"syntastic
+"
+map <leader>ssc :SyntasticCheck<CR>
+map <leader>ssi :SyntastiInfo<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}C!r!>set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_debug = 1
+let g:syntastic_debug_file = "~/syntastic.log"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
