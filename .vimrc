@@ -20,7 +20,7 @@ set fileformat=mac
 "set fileencodings=utf-8,gbk,ucs-bom,cp936
 "set fileencoding=gb18030
 "set fileencodings=utf-8,gb18030,utf-16,big5
-"set enc=utf-8
+set enc=utf-8
 "set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 "set fileencoding=gb2312
 
@@ -112,6 +112,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jreybert/vimagit'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic.git'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mbbill/undotree'
 
 call vundle#end()
 filetype plugin indent on
@@ -184,4 +186,21 @@ let g:syntastic_debug = 1
 let g:syntastic_debug_file = "~/syntastic.log"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nerdcommenter
+"
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"undotree
+"
+nnoremap <leader>su :UndotreeToggle<cr>
+if has("persistent_undo")
+        set undodir='~/.undodir/'
+        set undofile
+    endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
