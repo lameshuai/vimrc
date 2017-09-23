@@ -124,6 +124,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mbbill/undotree'
+Plugin 'artur-shaik/vim-javacomplete2'
 
 if hasVundle == 0
     echo "Installing Plugins, please ignore key map error messages"
