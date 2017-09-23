@@ -1,7 +1,8 @@
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文本格式和排版
 "
-set autoindent 			" 继承前一行的缩进方式，特别适用于多行注释
+set autoindent		        " 继承前一行的缩进方式，特别适用于多行注释
 set smartindent 		" 为C程序提供自动缩进
 set cindent 			" 使用C样式的缩进
 set smarttab 			" 在行和段开始处使用制表符
@@ -58,7 +59,7 @@ set foldlevel=100    		" 启动vim时不要自动折叠代码
 set nu
 set spell                       " 启用拼写检查
 set fileencodings=utf-8,gbk
-set ruler                       
+set ruler
 set nobackup 			" 不要备份文件（根据自己需要取舍） 
 "set backup
 syntax enable
@@ -78,10 +79,10 @@ nnoremap <leader>sv :source $MYVIMRC<cr>  " source配置文件
 "
 if has("gui_running")
 au GUIEnter * simalt ~x            " 自动最大化
-set guioptions-=m  
-set guioptions-=T  
-set guioptions-=L 
-set guioptions-=r 
+set guioptions-=m
+set guioptions-=T
+set guioptions-=L
+set guioptions-=r
 set guioptions-=b
 endif
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
@@ -101,6 +102,16 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "插件
 "
+let hasVundle=1
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+    let hasVundle=0
+endif
+
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -114,7 +125,13 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mbbill/undotree'
+Plugin 'artur-shaik/vim-javacomplete2'
 
+if hasVundle == 0
+    echo "Installing Plugins, please ignore key map error messages"
+    echo ""
+    :PluginInstall
+endif
 call vundle#end()
 filetype plugin indent on
 
@@ -202,5 +219,28 @@ if has("persistent_undo")
         set undodir='~/.undodir/'
         set undofile
     endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"javacomplete2
+"
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+map <F5> :call CompileRunGcc()<CR>
+imap <F5> <ESC>:call CompileRunGcc()<CR>
+func! CompileRunGcc()
+    exec "w"
+    exec "cd %:p:h"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'java' 
+        exec "!javac %" 
+        exec "!java %<"
+    elseif &filetype == 'sh'
+        :!./%
+    endif
+endfunc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
