@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Format
 
-" indent foramt
+" indent format
 set autoindent
 set smartindent
 set cindent
@@ -18,7 +18,7 @@ set fileformats=unix,dos
 set fileformat=mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set editing enviroment
+" set editing environment
 "
 "let &termencoding=&encoding
 "set fileencodings=utf-8,gbk,ucs-bom,cp936
@@ -35,9 +35,9 @@ set showmatch 			" highlight match brackets
 set matchtime=5 		" match time
 set scrolloff=10  		" keep 10 line from button
 set hlsearch 			" highlight search
-set nowrapscan 		        " search file golbally
+set nowrapscan 		        " search file globally
 set incsearch 			" searching while input
-set ignorecase 			" ingored case when search
+set ignorecase 			" ignored case when search
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File setting
@@ -53,7 +53,7 @@ set selectmode=mouse,key
 " Normal
 
 let mapleader = ","             " prefix key map
-set viminfo+=! 			" save the golbal arguments
+set viminfo+=! 			" save the global arguments
 set history=300 		" history numbers
 set nocompatible 		" use vim not vi
 set foldmethod=syntax
@@ -66,7 +66,7 @@ set nobackup 			" do not backup files
 "set backup
 syntax enable
 syntax on 			" highlight syntax
-set magic 			" set reguar expressions
+set magic 			" set regular expressions
 set backspace=indent,eol,start 	" tell where to delete
 set showcmd                     " show command line
 set noerrorbells 		" disable errors bells
@@ -126,8 +126,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mbbill/undotree'
-Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'jiangmiao/auto-pairs'
+
+if filereadable(expand('~/.vim/bundle/YouCompleteMe/README.md'))
+   Plugin 'Valloric/YouCompleteMe'
+endif
 
 if hasVundle == 0
     echo "Installing Plugins, please ignore key map error messages"
@@ -138,8 +141,17 @@ call vundle#end()
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe
+if has('unix')
+   let g:ycm_server_python_interpreter='/usr/bin/python'
+endif
+
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-airline
-let g:airline#extensions#tabline#enabled = 1  " enable tabline
+let g:airline#extensions#tabline#enabled = 1  " enable tab line
 nmap <leader><C-n> :bnext<CR>
 nmap <leader><C-p> :bprev<CR>
 "syntasticexpand
@@ -160,7 +172,7 @@ let g:airline#extensions#vimagit#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "hydrangea
 "
-colorscheme hydrangea                        " colorscheme
+colorscheme hydrangea                        " color scheme
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Nerdtree
@@ -231,9 +243,9 @@ if has("persistent_undo")
     endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"javacomplete2
+" Compile key map
 "
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
 map <F5> :call CompileRunGcc()<CR>
 imap <F5> <ESC>:call CompileRunGcc()<CR>
 func! CompileRunGcc()
