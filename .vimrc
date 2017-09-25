@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Format
 
-" indent format
+" indent foramt
 set autoindent
 set smartindent
 set cindent
@@ -18,7 +18,7 @@ set fileformats=unix,dos
 set fileformat=mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set editing environment
+" set editing enviroment
 "
 "let &termencoding=&encoding
 "set fileencodings=utf-8,gbk,ucs-bom,cp936
@@ -35,9 +35,9 @@ set showmatch 			" highlight match brackets
 set matchtime=5 		" match time
 set scrolloff=10  		" keep 10 line from button
 set hlsearch 			" highlight search
-set nowrapscan 		        " search file globally
+set nowrapscan 		        " search file golbally
 set incsearch 			" searching while input
-set ignorecase 			" ignored case when search
+set ignorecase 			" ingored case when search
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File setting
@@ -52,8 +52,8 @@ set selectmode=mouse,key
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Normal
 
-let mapleader = ","             " prefix key map
-set viminfo+=! 			" save the global arguments
+let mapleader = "-"             " prefix key map
+set viminfo+=! 			" save the golbal arguments
 set history=300 		" history numbers
 set nocompatible 		" use vim not vi
 set foldmethod=syntax
@@ -66,7 +66,7 @@ set nobackup 			" do not backup files
 "set backup
 syntax enable
 syntax on 			" highlight syntax
-set magic 			" set regular expressions
+set magic 			" set reguar expressions
 set backspace=indent,eol,start 	" tell where to delete
 set showcmd                     " show command line
 set noerrorbells 		" disable errors bells
@@ -126,11 +126,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mbbill/undotree'
+Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'jiangmiao/auto-pairs'
-
-if filereadable(expand('~/.vim/bundle/YouCompleteMe/README.md'))
-   Plugin 'Valloric/YouCompleteMe'
-endif
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
 
 if hasVundle == 0
     echo "Installing Plugins, please ignore key map error messages"
@@ -141,17 +140,8 @@ call vundle#end()
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe
-if has('unix')
-   let g:ycm_server_python_interpreter='/usr/bin/python'
-endif
-
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-airline
-let g:airline#extensions#tabline#enabled = 1  " enable tab line
+let g:airline#extensions#tabline#enabled = 1  " enable tabline
 nmap <leader><C-n> :bnext<CR>
 nmap <leader><C-p> :bprev<CR>
 "syntasticexpand
@@ -172,7 +162,7 @@ let g:airline#extensions#vimagit#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "hydrangea
 "
-colorscheme hydrangea                        " color scheme
+colorscheme hydrangea                        " colorscheme
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Nerdtree
@@ -207,6 +197,7 @@ elseif has('win32')
 endif
 
 let g:tagbar_show_linenumbers = 1
+let g:tagbar_width = 20
 autocmd vimenter * Tagbar
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,9 +234,9 @@ if has("persistent_undo")
     endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Compile key map
+"javacomplete2
 "
-
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 map <F5> :call CompileRunGcc()<CR>
 imap <F5> <ESC>:call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -269,5 +260,18 @@ endfunc
 "auto-pairs
 "
 let g:AutoPairsFlyMode = 1
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-surround
+"
+let g:surround_{char2nr("d")} = "<div\1id: \r..*\r id=\"&\"\1>\r</div>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"emmet
+"
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+imap <F3> <Esc><C-Y>,i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
