@@ -11,6 +11,9 @@ plugins for the following:
 + javacomplete2
 + undotree
 + vim-airline
++ auto-pairs
++ vim-surround
++ emmet
 
 And I choose the ~hydrangea-vim~ for my major color scheme.
 
