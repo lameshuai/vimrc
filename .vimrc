@@ -245,58 +245,6 @@ if has("autocmd")
   autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
   autocmd FileType java inoremap <expr><CR> pumvisible()?"\<C-Y>":"<CR>"
   autocmd FileType java inoremap <buffer> . .<C-X><C-O><C-P>
-  autocmd Filetype java inoremap <buffer>  A  A<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  B  B<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  C  C<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  D  D<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  E  E<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  F  F<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  G  G<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  H  H<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  I  I<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  J  J<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  K  K<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  L  L<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  M  M<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  N  N<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  O  O<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  P  P<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  Q  Q<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  R  R<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  S  S<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  T  T<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  U  U<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  V  V<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  W  W<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  X  X<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  Y  Y<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  Z  Z<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  a  a<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  b  b<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  c  c<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  d  d<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  e  e<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  f  f<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  g  g<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  h  h<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  i  i<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  j  j<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  k  k<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  l  l<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  m  m<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  n  n<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  o  o<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  p  p<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  q  q<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  r  r<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  s  s<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  t  t<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  u  u<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  v  v<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  w  w<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  x  x<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  y  y<C-N><C-P>
-  autocmd Filetype java inoremap <buffer>  z  z<C-N><C-P>
 endif
 inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P>
 map <F5> :call CompileRunGcc()<CR>
@@ -334,6 +282,6 @@ let g:surround_{char2nr("d")} = "<div\1id: \r..*\r id=\"&\"\1>\r</div>"
 "
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-inoremap <F3> <Esc><C-Y>,i
+imap <F3> <Esc><C-Y>,i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
